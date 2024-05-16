@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Te setting up of the RedactingFormatter
+    The setting up of the RedactingFormatter
 """
 
 import re
