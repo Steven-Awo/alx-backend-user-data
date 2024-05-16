@@ -17,4 +17,5 @@ def hash_password(password: str) -> bytes:
         bytes: type of encryption password
     """
     if password:
-        return bcrypt.hashpw(str.encode(password), bcrypt.gensalt())
+        return bcrypt.hashpw(str.encode(password),
+                bcrypt.gensalt())
