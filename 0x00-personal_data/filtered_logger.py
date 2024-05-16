@@ -53,10 +53,9 @@ def filter_datum(fields: List[str], redaction: str, message: str,
         separator: a string representing by which character is
         separating all fields in the log line (message)
     """
-    return re.sub(
-            r"(\w+)=([a-zA-Z0-9@\.\-\(\)\ \:\^\<\>\~\$\%\@\?\!\/]*)",
-            lambda match: match.group(1) + "=" + redaction
-            if match.group(1) in fields else match.group(0), message)
+    return re.sub(r"(\w+)=([a-zA-Z0-9@\.\-\(\)\ \:\^\<\>\~\$\%\@\?\!\/]*)",
+                  lambda match: match.group(1) + "=" + redaction
+                  if match.group(1) in fields else match.group(0), message)
 
 def get_logger() -> logging.Logger:
     """By returning a logger's object """
