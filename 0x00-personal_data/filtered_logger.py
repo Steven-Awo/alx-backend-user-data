@@ -9,6 +9,9 @@ from typing import List
 
 import logging
 
+import csv
+
+
 class RedactingFormatter(logging.Formatter):
     """ Creating theRedacting Formatter's class
     """
@@ -48,3 +51,17 @@ def filter_datum(fields: List[str], redaction: str, message: str,
             r"(\w+)=([a-zA-Z0-9@\.\-\(\)\ \:\^\<\>\~\$\%\@\?\!\/]*)",
             lambda match: match.group(1) + "=" + redaction
             if match.group(1) in fields else match.group(0), message)
+def get_logger() -> logging.Logger:
+    """By returning a logger's object """
+    lgn = logging.getLogger("user_data")
+
+    lgn.setLevel(logging.INFO)
+
+    lgn.propagate = False
+
+    shlr = logging.StreamHandler()
+
+    shlr.setFormatter(RedactingFormatter(PII_FIELDS))
+
+    lgn.addHandler(shlr)
+    return lgn
