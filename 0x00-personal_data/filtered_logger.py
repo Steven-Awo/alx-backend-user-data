@@ -21,7 +21,7 @@ class RedactingFormatter(logging.Formatter):
     REDACTION = "***"
 
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
-    
+
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
@@ -39,7 +39,7 @@ def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """ The returning of the log message's that were
     obfuscated
-    
+
     Args:
         fields: a list of strings representing all fields
         to obfuscate
