@@ -81,3 +81,21 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         host=os.getenv("PERSONAL_DATA_DB_HOST", "root"),
         database=os.getenv("PERSONAL_DATA_DB_NAME"),
     )
+
+def main():
+    """
+    Creating the main function
+    """
+    connt = get_db()
+    userrs = connt.cursor()
+    userrs.execute("SELECT CONCAT('name=', name, ';ssn=', ssn, ';ip=', ip, \
+        ';user_agent', user_agent, ';') AS message FROM users;")
+    formatter = RedactingFormatter(fields=PII_FIELDS)
+    logger = get_logger()
+
+    for userr in userrs:
+        logger.log(logging.INFO, userr[0])
+
+
+if __name__ == "__main__":
+    main()
