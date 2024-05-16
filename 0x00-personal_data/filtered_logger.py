@@ -53,6 +53,7 @@ def filter_datum(fields: List[str], redaction: str, message: str,
             r"(\w+)=([a-zA-Z0-9@\.\-\(\)\ \:\^\<\>\~\$\%\@\?\!\/]*)",
             lambda match: match.group(1) + "=" + redaction
             if match.group(1) in fields else match.group(0), message)
+
 def get_logger() -> logging.Logger:
     """By returning a logger's object """
     lgn = logging.getLogger("user_data")
@@ -67,3 +68,12 @@ def get_logger() -> logging.Logger:
 
     lgn.addHandler(shlr)
     return lgn
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """We are connecting to the MySQL's database """
+    return mysql.connector.connect(
+        user=os.getenv("PERSONAL_DATA_DB_USERNAME", "localhost"),
+        password=os.getenv("PERSONAL_DATA_DB_PASSWORD", ""),
+        host=os.getenv("PERSONAL_DATA_DB_HOST", "root"),
+        database=os.getenv("PERSONAL_DATA_DB_NAME"),
+    )
