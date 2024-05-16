@@ -11,6 +11,10 @@ import logging
 
 import csv
 
+import mysql.connector
+
+import os
+
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
