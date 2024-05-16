@@ -11,6 +11,8 @@ import logging
 
 import csv
 
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
 
 class RedactingFormatter(logging.Formatter):
     """ Creating theRedacting Formatter's class
