@@ -6,7 +6,7 @@ import base64
 
 from typing import TypeVar, List
 
-from models.user import Usera
+from models.user import User
 
 from flask import request
 
