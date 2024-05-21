@@ -4,7 +4,7 @@ from api.v1.auth.auth import Auth
 
 import base64
 
-from typing import TypeVar
+from typing import TypeVar, List
 
 from models.user import User
 
