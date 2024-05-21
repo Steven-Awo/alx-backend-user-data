@@ -42,8 +42,7 @@ if __name__ == "__main__":
 def before_request() -> None:
     """ The check before the request
     """
-    paths = ['/api/v1/status/',
-             '/api/v1/unauthorized/',
+    paths = ['/api/v1/status/', '/api/v1/unauthorized/',
              '/api/v1/forbidden/']
     if not auth:
         return None
