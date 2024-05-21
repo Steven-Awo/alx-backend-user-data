@@ -17,3 +17,21 @@ class BasicAuth(Auth):
 
         return hdr[1] if hdr[0] == 'Basic' else None
 
+    def decode_base64_authorization_header(self,
+                                           base64_authorization_header: str
+                                           ) -> str:
+        """The returning of the decoded value thats of a Base64's
+        string"""
+        if base64_authorization_header is None or\
+           type(base64_authorization_header) is not str:
+            return None
+        try:
+            the_base64s_bytes = base64_authorization_header.encode('utf-8')
+            
+            msge_bytes = base64.b64decode(the_base64s_bytes)
+            
+            msge = msge_bytes.decode('utf-8')
+            
+            return msge
+        except Exception:
+            return None
