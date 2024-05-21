@@ -6,7 +6,9 @@ import base64
 
 from typing import TypeVar, List
 
-from models.user import User
+from models.user import Usera
+
+from flask import request
 
 
 class BasicAuth(Auth):
@@ -69,9 +71,9 @@ class BasicAuth(Auth):
         if not userrs:
             return None
 
-        for userr in userrs:
-            if userr.is_valid_password(user_pwd):
-                return userr
+        for user in userrs:
+            if user.is_valid_password(user_pwd):
+                return user
 
         return None
 
