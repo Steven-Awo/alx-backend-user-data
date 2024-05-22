@@ -2,6 +2,8 @@
 """ Setting up the session Authentication's module """
 from api.v1.auth.auth import Auth
 
+import uuid
+
 class SessionAuth(Auth):
     """ Creating a sessionAuth's class that just inherits
     from the Auth """
