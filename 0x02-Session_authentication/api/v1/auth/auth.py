@@ -31,3 +31,8 @@ class Auth():
     def current_user(self, request=None) -> TypeVar('User'):
         """ It chexk for the current user's method"""
         return None
+
+    def session_cookie(self, request=None):
+        """Returning a cookie's value gotten from a request """
+        if request:
+            return request.cookies.get(getenv('SESSION_NAME'))
