@@ -28,5 +28,4 @@ class SessionAuth(Auth):
         the cookie value
         """
         return User.get(
-            self.user_id_for_session_id(
-                self.session_cookie(request)))
+            self.user_id_for_session_id(self.session_cookie(request)))
