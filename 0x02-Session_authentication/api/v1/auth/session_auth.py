@@ -4,6 +4,8 @@ from api.v1.auth.auth import Auth
 
 import uuid
 
+from models.user import User
+
 class SessionAuth(Auth):
     """ Creating a sessionAuth's class that just inherits
     from the Auth """
