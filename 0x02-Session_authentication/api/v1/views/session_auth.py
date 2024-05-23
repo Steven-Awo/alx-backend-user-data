@@ -5,7 +5,7 @@ from api.v1.views import app_views
 
 from models.user import User
 
-from flask import  request, jsonify
+from flask import  request, jsonify, abort
 
 from os import getenv
 
@@ -46,3 +46,15 @@ def login():
     
         return outt
     return jsonify({"error": "no user found for this email"}), 404
+
+def logout():
+    """ DELETE thats for /auth_session/logout
+    Return:
+     - Returning an empty json session
+    """
+    from api.v1.app import auth
+
+    if not auth.destroy_session(request):
+        abort(404)
+
+    return jsonify({}), 200
