@@ -1,13 +1,10 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-Test 0x07 - Rotate 2D Matrix
+Main file
 """
-rotate_2d_matrix = __import__('0-rotate_2d_matrix').rotate_2d_matrix
+from user import User
 
-if __name__ == "__main__":
-    matrix = [[1, 2, 3],
-              [4, 5, 6],
-              [7, 8, 9]]
+print(User.__tablename__)
 
-    rotate_2d_matrix(matrix)
-    print(matrix)
+for column in User.__table__.columns:
+    print("{}: {}".format(column, column.type))
