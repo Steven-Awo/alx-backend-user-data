@@ -82,10 +82,10 @@ class Auth:
             str: the string's for representation just of the session ID
         """
         try:
-            userr = self._db.find_user_by(email=email)
+            user = self._db.find_user_by(email=email)
 
             session_id = _generate_uuid()
 
-            self._db.update_user(userr.id, session_id=session_id)
+            self._db.update_user(user.id, session_id=session_id)
         except NoResultFound:
             return
