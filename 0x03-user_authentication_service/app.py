@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-Flask app
+The creation of the Flask app
 """
 from auth import Auth
 
 from flask import Flask, jsonify
 
 AUTH = Auth()
+
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello() -> str:
-    """GET route index
+    """GET for the route's index
 
     Returns:
         str: json {'message': 'Bienvenue'}
