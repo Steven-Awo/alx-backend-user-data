@@ -18,7 +18,7 @@ def hello() -> str:
     Returns:
         str: json {'message': 'Bienvenue'}
     """
-    return jsonify({"message": "Bienvenue"}), 200a
+    return jsonify({"message": "Bienvenue"}), 200
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def user() -> str:
