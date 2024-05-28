@@ -10,7 +10,7 @@ Base = declarative_base()
 
 
 class User(Base):
-    """The user's class model 
+    """The user's class model
 
     Args:
         Base (class): for the declarative base thats
