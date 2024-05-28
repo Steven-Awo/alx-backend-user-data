@@ -3,7 +3,7 @@
 The creation of the Flask app
 """
 from auth import Auth
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 
 AUTH = Auth()
 app = Flask(__name__)
@@ -40,18 +40,18 @@ def login() -> str:
     Returns:
         str: the messege about the login status
     """
-    emaill = request.form.get('email')
+    email = request.form.get('email')
 
     password = request.form.get('password')
 
-    validating_the_login = AUTH.valid_login(emaill, password)
+    validating_the_login = AUTH.valid_login(email, password)
 
     if not validating_the_login:
         abort(401)
 
-    session_id = AUTH.create_session(emaill)
+    session_id = AUTH.create_session(email)
 
-    respondings = jsonify({"email": f"{emaill}", "message": "logged in"})
+    respondings = jsonify({"email": f"{email}", "message": "logged in"})
 
     respondings.set_cookie('session_id', session_id)
 
