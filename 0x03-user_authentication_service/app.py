@@ -3,10 +3,13 @@
 The creation of the Flask app
 """
 from auth import Auth
-from flask import Flask, jsonify, request, abort
+
+from flask import Flask, jsonify, request, abort, redirect
 
 AUTH = Auth()
+
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello() -> str:
@@ -56,6 +59,25 @@ def login() -> str:
     respondings.set_cookie('session_id', session_id)
 
     return respondings
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    """ logout
+
+    Return:
+       str: message
+    """
+    sessioning_id = request.cookies.get('session_id')
+
+    userr = AUTH.get_user_from_session_id(sessioning_id)
+
+    if user:
+        AUTH.destroy_session(userr.id)
+
+        return redirect('/')
+    else:
+        abort(403)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
