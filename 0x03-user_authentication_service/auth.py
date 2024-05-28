@@ -10,6 +10,8 @@ from user import User
 
 from sqlalchemy.orm.exc import NoResultFound
 
+from uuid import uuid4
+
 
 def _hash_password(password: str) -> str:
     """Creating the hash for a password to pass for
@@ -22,6 +24,14 @@ def _hash_password(password: str) -> str:
         str: password hashed
     """
     return hashpw(password.encode('utf-8'), gensalt())
+
+def _generate_uuid() -> str:
+    """This help to generate the uuid
+
+    Returns:
+        str: print out the representation of just a new UUID
+    """
+    return str(uuid4())
 
 class Auth:
     """Auth class to interact with the authentication database.
@@ -60,4 +70,4 @@ class Auth:
             user = self._db.find_user_by(email=email)
         except NoResultFound:
             return False
-        return checkpw(password.encode('utf-8'), user.hash_password)
+        return checkpw(password.encode('utf-8'), user.hashed_password)
