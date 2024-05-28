@@ -34,7 +34,10 @@ def user() -> str:
     try:
         AUTH.register_user(email, password)
 
-        return jsonify({"email": f"{email}", "message": "user created"}), 200
+        return jsonify({"email": email, "message": "user created"}), 200
 
     except Exception:
         return jsonify({"messege": "email already registered"}), 400
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
