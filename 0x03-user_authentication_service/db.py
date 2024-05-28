@@ -48,19 +48,14 @@ class DB:
         sessionn.commit()
         return userr
 
-    def update_user(self, user_id: int, **kwargs) -> None:
-        """Updating the user in thedatabase
+    def find_user_by(self, **kwargs) -> User:
+        """finding the user by using some arguments
 
-        Args:
-            user_id (int): id thats of the user
+        Returns:
+            User: either the user found or raise an error
         """
-        userr = self.find_user_by(id=user_id)
-        for keyy, vale in kwargs.items():
-            if keyy not in DATA:
-                raise ValueError
+        userr = self._session.query(User).filter_by(**kwargs).first()
+        if not userr:
+            raise NoResultFound
 
-            setattr(userr, keyy, vale)
-
-        self._session.commit()
-
-        return None
+        return userr
