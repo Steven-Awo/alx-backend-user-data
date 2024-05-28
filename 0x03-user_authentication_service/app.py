@@ -4,7 +4,7 @@ The creation of the Flask app
 """
 from auth import Auth
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 AUTH = Auth()
 
@@ -27,12 +27,12 @@ def user() -> str:
     Returns:
         str: the messege
     """
-    email = request.form.get('email')
+    emaill = request.form.get('email')
 
-    password = request.form.get('password')
+    passworrd = request.form.get('password')
 
     try:
-        AUTH.register_user(email, password)
+        AUTH.register_user(emaill, passwordd)
 
         return jsonify({"email": f"{email}", "message": "user created"}), 200
 
