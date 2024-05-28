@@ -27,12 +27,12 @@ def user() -> str:
     Returns:
         str: the messege
     """
-    emaill = request.form.get('email')
+    email = request.form.get('email')
 
-    passwordd = request.form.get('password')
+    password = request.form.get('password')
 
     try:
-        AUTH.register_user(emaill, passwordd)
+        AUTH.register_user(email, password)
 
         return jsonify({"email": f"{email}", "message": "user created"}), 200
 
