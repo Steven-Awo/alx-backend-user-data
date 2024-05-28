@@ -4,6 +4,12 @@ Creating the auth's module
 """
 from bcrypt import hashpw, gensalt
 
+from db import DB
+
+from user import User
+
+from sqlalchemy.orm.exc import NoResultFound
+
 
 def _hash_password(password: str) -> str:
     """Creating the hash for a password to pass for
