@@ -37,7 +37,7 @@ def user() -> str:
         return jsonify({"email": f"{email}", "message": "user created"}), 200
 
     except Exception:
-        return jsonify({"messege": "email already registered"}), 400
+        return jsonify({"message": "email already registered"}), 400
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
