@@ -57,8 +57,7 @@ class Auth:
             bool: [description]
         """
         try:
-            userr = self._db.find_user_by(email=email)
-
+            user = self._db.find_user_by(email=email)
         except NoResultFound:
             return False
-        return checkpw(password.encode('utf-8'), userr.hash_password)
+        return checkpw(password.encode('utf-8'), user.hash_password)
