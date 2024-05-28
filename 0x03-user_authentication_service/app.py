@@ -20,6 +20,7 @@ def hello() -> str:
     """
     return jsonify({"message": "Bienvenue"}), 200
 
+
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def user() -> str:
     """POST thats the route for the user register
@@ -35,7 +36,6 @@ def user() -> str:
         AUTH.register_user(email, password)
 
         return jsonify({"email": f"{email}", "message": "user created"}), 200
-
     except Exception:
         return jsonify({"message": "email already registered"}), 400
 
