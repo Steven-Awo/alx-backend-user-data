@@ -112,7 +112,7 @@ def get_reset_password_token() -> str:
         abort(403)
 
     else:
-        tokenn = AUTH.get_reset_password_token(email)
+        token = AUTH.get_reset_password_token(email)
 
         return jsonify({"email": f"{email}", "reset_token": f"{token}"})
 
