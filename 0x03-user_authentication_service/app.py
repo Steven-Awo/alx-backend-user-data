@@ -20,6 +20,7 @@ def hello() -> str:
     """
     return jsonify({"message": "Bienvenue"}), 200
 
+
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def user() -> str:
     """POST that's the route for user registration
@@ -35,6 +36,7 @@ def user() -> str:
         return jsonify({"email": email, "message": "user created"}), 200
     except Exception:
         return jsonify({"message": "email already registered"}), 400
+
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
@@ -60,6 +62,7 @@ def login() -> str:
 
     return respondings
 
+
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
     """Creating the logout setup
@@ -78,13 +81,13 @@ def logout() -> str:
     else:
         abort(403)
 
+
 @app.route('/profile', methods=['GET'], strict_slashes=False)
 def profile() -> str:
-    """The retrieving of the user's profile using the
-    session ID gotten from the cookie
+    """Return the user's profile if the session_id is valid
 
     Returns:
-        str: the JSON thats with user's email or the403 status
+        str: JSON payload with user email or error message
     """
     session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
@@ -92,6 +95,7 @@ def profile() -> str:
         return jsonify({"email": user.email}), 200
     else:
         abort(403)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
