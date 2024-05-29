@@ -65,10 +65,10 @@ def login() -> str:
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
-    """ logout
+    """Creating the logout setup
 
     Return:
-       str: message
+       str: the logout message
     """
     session_id = request.cookies.get('session_id')
 
